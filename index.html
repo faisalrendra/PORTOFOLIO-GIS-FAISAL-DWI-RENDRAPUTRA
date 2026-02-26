@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faisal Dwi Rendraputra – GIS Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#020617,#0f172a);
+    color:white;
+}
+
+/* Layout */
+section{
+    max-width:1100px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+/* Lightweight Glass */
+.glass{
+    background:linear-gradient(135deg,rgba(255,255,255,0.09),rgba(255,255,255,0.015));
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:22px;
+    padding:28px;
+}
+.glass h3{
+    margin-bottom:6px;
+}
+
+.glass p{
+    margin-top:12px;
+}
+/* Hero */
+.hero{
+    display:flex;
+    align-items:center;
+    gap:50px;
+    flex-wrap:wrap;
+    position:relative;
+}
+.hero::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    background:radial-gradient(circle, rgba(56,189,248,0.18), transparent 60%);
+    filter:blur(40px);
+    z-index:-1;
+}
+.hero img{
+    width:180px;
+    border-radius:18px;
+}
+
+h1{ font-size:32px; }
+.role{
+    color:#38bdf8;
+    margin-top:6px;
+    font-weight:500;
+}
+
+/* Text */
+p{
+    opacity:0.75;
+    line-height:1.6;
+}
+
+/* Badges */
+.badges{
+    margin-top:14px;
+}
+
+.badges span{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:14px;
+    font-size:12px;
+    background:rgba(56,189,248,0.12);
+    color:#7dd3fc;
+    margin:4px;
+}
+
+/* Grid */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
+    margin-top:24px;
+}
+
+/* Browser */
+.browser{
+    margin-top:14px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,0.08);
+    overflow:hidden;
+    background:#020617;
+}
+
+.browser-top{
+    height:26px;
+    background:rgba(255,255,255,0.04);
+}
+
+.preview{
+    height:160px;
+    overflow:hidden;
+}
+
+.preview video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Button */
+.btn{
+    display:inline-block;
+    margin-top:auto;
+    padding:9px 16px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+    color:#020617;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:600;
+    transition:0.25s ease;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(56,189,248,0.35);
+}
+
+/* Maps */
+.map-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    max-width:700px;     /* INI RAHASIA UTAMA */
+    margin:auto;
+}
+.map-card{
+    display:flex;
+    flex-direction:column;
+    transition:0.25s ease;
+}
+
+.map-card img{
+    width:100%;
+    border-radius:12px;
+}
+
+.map-card h3{
+    font-size:15px;
+    font-weight:500;
+    margin:10px 0 6px;
+    opacity:0.85;
+
+    min-height:40px;      /* KUNCI RAPII */
+}
+
+.map-card button{
+    margin-top:auto;      /* KUNCI PALING PENTING */
+    width:100%;
+    padding:7px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#6366f1,#4f46e5);
+    color:white;
+    font-size:12px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.map-card:hover{
+    transform:translateY(-4px) scale(1.02);
+    box-shadow:0 15px 35px rgba(0,0,0,0.35);
+}
+
+.map-card button:hover{
+    transform:translateY(-1px);
+}
+/* Popup */
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.88);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    backdrop-filter:blur(6px);
+    animation:fadeIn .2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+.popup img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:16px;
+}
+
+/* Contact */
+.contact{
+    text-align:center;
+    padding:60px 20px;
+}
+
+.contact h2{
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+.contact-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    width:280px;
+    margin:12px auto;
+    padding:14px 18px;
+
+    border-radius:18px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.18);
+
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+
+    transition:0.25s ease;
+}
+
+.contact-btn:hover{
+    transform:translateY(-3px) scale(1.02);
+    background:rgba(255,255,255,0.15);
+}
+
+.logo{
+    width:18px;
+    height:18px;
+}
+/* Footer */
+footer{
+    text-align:center;
+    opacity:0.4;
+    padding:40px;
+}
+h2{
+    font-size:26px;
+    margin-bottom:14px;
+    letter-spacing:0.3px;
+}
+/* ================= RESPONSIVE FIX ================= */
+
+/* Tablet */
+@media (max-width: 900px){
+    .map-grid{
+        grid-template-columns:repeat(2, 1fr);
+        max-width:500px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px){
+    .map-grid{
+        grid-template-columns:1fr;
+        max-width:320px;
+    }
+.map-card img{
+    width:100%;
+    border-radius:12px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+    section{
+        padding:40px 16px;
+    }
+
+    .hero{
+        gap:20px;
+    }
+
+    .hero img{
+        width:130px;
+    }
+
+    h1{
+        font-size:24px;
+    }
+    .contact{
+    padding:40px 16px;
+}
+
+footer{
+    padding:30px 16px 50px;
+    font-size:12px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <img src="faisal.png">
+    <div>
+        <h1>Faisal Dwi Rendraputra</h1>
+        <div class="role">GIS Specialist • Spatial Analyst • WebGIS Developer</div>
+<p style="margin-top:8px;opacity:.55;font-size:14px;">
+Focused on Spatial Analysis, Hazard Mapping & WebGIS Development
+</p>
+    </div>
+</section>
+
+<section>
+    <div class="glass">
+        <p>
+            I am a graduate of the Bachelor’s Program in Geomatics Engineering from Universitas Pembangunan “Veteran” Yogyakarta, with a strong focus and interest in GIS analysis and spatial data processing.
+I have experience in managing, analyzing, and interpreting geospatial data to support planning, mapping, and data-driven decision-making.
+I am proficient in GIS software, particularly ArcGIS and QGIS, as well as spatial modeling for producing thematic maps, land-use change analysis, and accurate, informative spatial visualizations.
+I am accustomed to working in a systematic, analytical, and adaptive manner across various academic and field-based projects.
+        </p>
+
+        <div class="badges">
+            <span>Spatial Analysis</span>
+            <span>GIS</span>
+            <span>WebGIS</span>
+            <span>3D Visualization</span>
+            <span>ArcGIS & QGIS</span>
+        </div>
+    </div>
+</section>
+
+<section>
+<h2>WebGIS Projects</h2>
+
+<div class="grid">
+
+<div class="glass">
+<h3>WebGIS Flood Hazard of the Special Region of Yogyakarta</h3>
+<p>An interactive flood hazard visualization platform for the Special Region of Yogyakarta, structured into three main pages: the home page, the interactive map page, and the flood hazard analysis page.</p>
+
+<div class="browser">
+<div class="browser-top"></div>
+<div class="preview">
+   <video muted loop autoplay playsinline>
+      <source src="reviewweb1.mp4" type="video/mp4">
+   </video>
+</div>
+</div>
+
+<a class="btn" href="https://nflakhrnnsa.github.io/FLOODDIYMAP/" target="_blank">
+Explore Website
+</a>
+</div>
+
+<div class="glass">
+<h3>WebGIS for Public Facilities in Madiun City</h3>
+<p>An interactive WebGIS-based visualization of public facilities in Madiun City, 
+supporting spatial exploration and location-based analysis. 
+Enabling users to quickly understand distribution patterns and facility accessibility.</p>
+<div class="browser">
+<div class="browser-top"></div>
+<div class="preview">
+   <video muted loop autoplay playsinline>
+      <source src="reviewweb2.mp4" type="video/mp4">
+   </video>
+</div>
+</div>
+
+<a class="btn" href="https://faisalrendra.github.io/WebGIS-Fasilitas-Umum-Kota-Madiun/" target="_blank">
+Explore Website
+</a>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>3D Animation Visualization</h2>
+<p>A three-dimensional visualization of tidal flood (rob) scenarios in Semarang City, presented as an animation. This visualization is designed to identify affected areas by incorporating 3D building models, with tidal sea level used as one of the key parameters.</p>
+<div class="glass">
+    <video controls style="width:100%;border-radius:14px;margin-top:10px;">
+        <source src="animasi3d.mp4" type="video/mp4">
+    </video>
+</div>
+</section>
+
+<section>
+<h2>Thematic Maps</h2>
+
+<div class="map-grid">
+
+    <div class="map-card glass">
+        <img src="lereng.png">
+        <h3>Slope Map</h3>
+        <button onclick="openMap(this)">Eksplore Map</button>
+    </div>
+
+    <div class="map-card glass">
+        <img src="LST.png">
+        <h3>Land Surface Temperature Map</h3>
+        <button onclick="openMap(this)">Eksplore Map</button>
+    </div>
+
+    <div class="map-card glass">
+        <img src="longsor.jpeg">
+        <h3>Landslide Map</h3>
+        <button onclick="openMap(this)">Eksplore Map</button>
+    </div>
+    <div class="map-card glass">
+        <img src="bangunan.jpeg">
+        <h3>Flood-Affected Buildings</h3>
+        <button onclick="openMap(this)">Eksplore Map</button>
+    </div>
+
+    <div class="map-card glass">
+        <img src="banjir.jpeg">
+        <h3>Flood Hazard Map</h3>
+        <button onclick="openMap(this)">Eksplore Map</button>
+    </div>
+
+    <div class="map-card glass">
+        <img src="patahan.jpeg">
+        <h3>Deformation Susceptibility Zone Map</h3>
+        <button onclick="openMap(this)">Eksplore Map</button>
+    </div>
+
+</div>
+</section>
+
+<section class="contact">
+  <h2>Contact</h2>
+
+  <a href="https://mail.google.com/mail/?view=cm&to=faisalrendra21@gmail.com" target="_blank" class="contact-btn">
+    <span class="icon">✉️</span>
+    faisalrendra21@gmail.com
+</a>
+
+  <a href="https://www.linkedin.com/in/faisal-dwi-rendraputra" target="_blank" class="contact-btn">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="logo">
+    LinkedIn
+  </a>
+
+  <a href="https://wa.me/6282227188339" target="_blank" class="contact-btn">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="logo">
+    WhatsApp
+  </a>
+</section>
+
+<footer>© 2026 • Faisal Dwi Rendraputra Portfolio</footer>
+
+<div class="popup" id="popup">
+<img id="popupImg">
+</div>
+
+<script>
+function openMap(btn){
+ const img = btn.parentElement.querySelector("img");
+ popup.style.display="flex";
+ popupImg.src = img.src;
+}
+popup.onclick=()=>popup.style.display="none";
+</script>
+
+</body>
+</html>
