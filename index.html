@@ -146,9 +146,9 @@ p{
 /* Maps */
 .map-grid{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(5, 1fr);
     gap:16px;
-    max-width:700px;     /* INI RAHASIA UTAMA */
+    max-width:1100px;     /* INI RAHASIA UTAMA */
     margin:auto;
 }
 .map-card{
@@ -272,8 +272,8 @@ h2{
 /* Tablet */
 @media (max-width: 900px){
     .map-grid{
-        grid-template-columns:repeat(2, 1fr);
-        max-width:500px;
+        grid-template-columns:repeat(3, 1fr);
+        max-width:700px;
     }
 }
 
@@ -411,6 +411,16 @@ Explore Website
     <div class="map-card glass">
         <img src="lereng.png">
         <h3>Slope Map</h3>
+        <button onclick="openMap(this)">Eksplore Map</button>
+    </div>
+    <div class="map-card glass">
+        <img src="prediksituplah.jpeg">
+        <h3>Land Cover Prediction Map</h3>
+        <button onclick="openMap(this)">Eksplore Map</button>
+    </div>
+    <div class="map-card glass">
+        <img src="cadangan.jpeg">
+        <h3>Carbon Stock Map</h3>
         <button onclick="openMap(this)">Eksplore Map</button>
     </div>
 
